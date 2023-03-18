@@ -4,7 +4,7 @@ terraform {
     key = "statefile/boot-30projs.tf"
     encrypt = true
     region = "us-east-1"
-    dynamodb_table = "state-bucket-locks"
+   # dynamodb_table = "state-bucket-locks"
    
 }
 } 

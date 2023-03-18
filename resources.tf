@@ -9,10 +9,10 @@ resource "aws_s3_bucket" "state-bucket" {
 
     bucket = "bootcamp30-11-countyemi"
     acl = "private"
-    # versioning enaled
+   /**  # versioning enaled
     versioning {
         enabled = true
-    }
+    } **/
     #enable server side encryption with "state-key"
 
     server_side_encryption_configuration {
@@ -26,7 +26,7 @@ resource "aws_s3_bucket" "state-bucket" {
       }
     }
 }
-
+/**
 #create the dynamo table lock to be used by state-bucket
 resource "aws_dynamodb_table" "terraform_locks" {
 name         = "state-bucket-locks"
@@ -39,3 +39,4 @@ name = "LockID"
 type = "S"
       }
 }
+**/
