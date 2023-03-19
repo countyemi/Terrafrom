@@ -4,16 +4,19 @@ resource "aws_kms_key" "state-key" {
   
 }
 
+#generate a random integer 
+resource "random_integer" "random-number" {
+  min = 1
+  max = 5000
+}
+
 # create s3 bucket with name "bootcamp30-11-countyemi"
 resource "aws_s3_bucket" "state-bucket" {
 
-    bucket = "bootcamp30-11-countyemi"
+    bucket = "${var.bucket-name-prefix}-${random_integer.bucket_id.result}-${var.bucket-name-suffix}"
+
     acl = "private"
-   /**  # versioning enaled
-    versioning {
-        enabled = true
-    } **/
-    #enable server side encryption with "state-key"
+    
 
     server_side_encryption_configuration {
       rule {
@@ -26,17 +29,4 @@ resource "aws_s3_bucket" "state-bucket" {
       }
     }
 }
-/**
-#create the dynamo table lock to be used by state-bucket
-resource "aws_dynamodb_table" "terraform_locks" {
-name         = "state-bucket-locks"
-hash_key     = "LockID"
-read_capacity = 3
-write_capacity = 3
 
-attribute {
-name = "LockID"
-type = "S"
-      }
-}
-**/
