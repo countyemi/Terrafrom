@@ -13,7 +13,7 @@ resource "random_integer" "random-number" {
 # create s3 bucket with name "bootcamp30-11-countyemi"
 resource "aws_s3_bucket" "state-bucket" {
 
-    bucket = "${var.bucket-name-prefix}-${random_integer.bucket_id.result}-${var.bucket-name-suffix}"
+    bucket = "${var.bucket-name-prefix}-${random_integer.random-number.result}-${var.bucket-name-suffix}"
 
     acl = "private"
     
